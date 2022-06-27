@@ -2,7 +2,7 @@
  
 ## Verify the monitoring installation
 ![](answer-img/TODO1.jpg)
- 
+```
 localhost:/home/vagrant # kubectl get pod,service
 NAME                               READY   STATUS    RESTARTS   AGE
 pod/svclb-trial-service-zskd7      1/1     Running   3          15h
@@ -50,7 +50,7 @@ pod/jaeger-operator-764c7d7d74-kj4q2   2/2     Running   10         15h
 NAME                                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
 service/jaeger-operator-metrics           ClusterIP   10.43.150.231   <none>        8443/TCP   20h
 service/jaeger-operator-webhook-service   ClusterIP   10.43.242.200   <none>        443/TCP    20h
- 
+```
 ## Setup the Jaeger and Prometheus source
 ![](answer-img/TODO2.jpg)
  
