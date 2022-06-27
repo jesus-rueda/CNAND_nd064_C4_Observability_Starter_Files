@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: backend-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -14,18 +14,26 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ghcr.io/jasonsmithio/backend:v1
+        image: jesusarueda/monitoring-backend:v1.9
+        env:
+        - name: PROMETHEUS_MULTIPROC_DIR
+          value: "/tmp/"
         ports:
         - containerPort: 8081
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: backend
+  labels:
+    app: backend
+  annotations:
+    prometheus.io/scrape: "true"
 spec:
   selector:
     app: backend
   ports:
-    - port: 8081
+    - name: web
+      port: 80
       targetPort: 8080
   type: LoadBalancer

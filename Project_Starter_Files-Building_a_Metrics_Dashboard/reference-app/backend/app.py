@@ -1,38 +1,54 @@
-from flask import Flask, render_template, request, jsonify
+from asyncio.log import logger
+from flask import Flask, jsonify
+from prometheus_flask_exporter.multiprocess import GunicornInternalPrometheusMetrics
+import logging
+from jaeger_client import Config
 
-import pymongo
-from flask_pymongo import PyMongo
 
 app = Flask(__name__)
+metrics = GunicornInternalPrometheusMetrics(app)
 
-app.config["MONGO_DBNAME"] = "example-mongodb"
-app.config[
-    "MONGO_URI"
-] = "mongodb://example-mongodb-svc.default.svc.cluster.local:27017/example-mongodb"
 
-mongo = PyMongo(app)
+def init_tracer(service):
+    logging.getLogger('').handlers = []
+    logging.basicConfig(format='%(message)s', level=logging.DEBUG)
+
+    config = Config(
+        config={
+            'sampler': {
+                'type': 'const',
+                'param': 1,
+            },
+            'logging': True,
+        },
+        service_name=service,
+    )
+
+    # this call also sets opentracing.tracer
+    return config.initialize_tracer()
+
+tracer = init_tracer('backend')
 
 
 @app.route("/")
 def homepage():
     return "Hello World"
 
+@app.route("/fail")
+def going_to_fail():
+    raise Exception("Something is wrong")
 
 @app.route("/api")
 def my_api():
-    answer = "something"
-    return jsonify(repsonse=answer)
+    with tracer.start_span('backend-span') as span:
+        span.set_tag('http.url', '/api')        
+        span.set_tag('http.method', "GET")
 
-
-@app.route("/star", methods=["POST"])
-def add_star():
-    star = mongo.db.stars
-    name = request.json["name"]
-    distance = request.json["distance"]
-    star_id = star.insert({"name": name, "distance": distance})
-    new_star = star.find_one({"_id": star_id})
-    output = {"name": new_star["name"], "distance": new_star["distance"]}
-    return jsonify({"result": output})
+        answer = "something"
+        response = jsonify(repsonse=answer)
+        span.set_tag('http.status_code', 200)
+        logging.info("api requests")
+        return response
 
 
 if __name__ == "__main__":
