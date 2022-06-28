@@ -1,6 +1,6 @@
 **Note:** For the screenshots, you can store all of your answer images in the `answer-img` directory.
  
-## Verify the monitoring installatio
+## Verify the monitoring installation
 
 *TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
 
@@ -105,17 +105,18 @@ and the average failed requests (no response) in the period time (ratio).
 
 TROUBLE TICKET
  
-Name: Jesus Andres Rueda
- 
-Date: 2022-06-27
- 
-Subject: High latency on app
- 
-Affected Area: Backend services
- 
-Severity: Medium
- 
-Description: Has been detected a set of requests that exceeds the latency threshold (500us) of the backend application in the new version.
+Name:
+Jesus Andres Rueda 
+Date: 
+2022-06-27 
+Subject:
+High latency on app 
+Affected Area:
+Backend services 
+Severity:
+Medium 
+Description:
+Has been detected a set of requests that exceeds the latency threshold (500us) of the backend application in the new version.
 ![](answer-img/ticket-evidence1.jpg)
  
  
@@ -129,6 +130,7 @@ Description: Has been detected a set of requests that exceeds the latency thresh
  
 ## Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
+
 1. Total uptime for each service per Month which can be measured using frontend service/backend uptimes based on a 30 seconds probe.
 2. Span duration of api calls in average, monitor the outliers endpoints
 3. Error register and monitoring of services
@@ -142,5 +144,3 @@ Errors panels, show the count of 4xx and 5xx errors in backend
 Latency shows the response time of the calls
 Memory shows the used memory of the nodes in cluster
 CPU shows the usage of the CPU nodes over the time
- 
-
