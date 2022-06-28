@@ -4,7 +4,6 @@
 
 *TODO:* run `kubectl` command to show the running pods and services for all components. Take a screenshot of the output and include it here to verify the installation
 
-
 ![](answer-img/TODO1.jpg)
 ```
 localhost:/home/vagrant # kubectl get pod,service
@@ -104,21 +103,25 @@ and the average failed requests (no response) in the period time (ratio).
 *TODO:* Using the template below, write a trouble ticket for the developers, to explain the errors that you are seeing (400, 500, latency) and to let them know the file that is causing the issue also include a screenshot of the tracer span to demonstrate how we can user a tracer to locate errors easily.
 
 TROUBLE TICKET
- 
+
 Name:
 Jesus Andres Rueda 
+
 Date: 
 2022-06-27 
+
 Subject:
 High latency on app 
+
 Affected Area:
 Backend services 
+
 Severity:
 Medium 
+
 Description:
 Has been detected a set of requests that exceeds the latency threshold (500us) of the backend application in the new version.
 ![](answer-img/ticket-evidence1.jpg)
- 
  
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
