@@ -105,9 +105,9 @@ and the average failed requests (no response) in the period time (ratio).
 TROUBLE TICKET
 
 Name:
-Jesus Andres Rueda 
+Jesus Andres Rueda
 
-Date: 
+Date:
 2022-06-27 
 
 Subject:
