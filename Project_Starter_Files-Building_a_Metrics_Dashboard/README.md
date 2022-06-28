@@ -120,6 +120,8 @@ Severity:
 Medium 
 
 Description:
+
+
 Has been detected a set of requests that exceeds the latency threshold (500us) of the backend application in the new version.
 ![](answer-img/ticket-evidence1.jpg)
  
