@@ -36,7 +36,10 @@ def homepage():
 
 @app.route("/fail")
 def going_to_fail():
-    raise Exception("Something is wrong")
+    with tracer.start_span('backend-span2') as span:
+        span.set_tag('http.url', '/fail')        
+        span.set_tag('http.method', "GET")
+        raise ValueError("Something is wrong")
 
 @app.route("/api")
 def my_api():

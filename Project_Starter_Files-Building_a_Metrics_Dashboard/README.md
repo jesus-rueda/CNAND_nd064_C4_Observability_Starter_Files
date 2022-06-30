@@ -56,7 +56,7 @@ service/jaeger-operator-webhook-service   ClusterIP   10.43.242.200   <none>    
 ```
 ## Setup the Jaeger and Prometheus source
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
-
+![](answer-img/login.jpg)
 ![](answer-img/TODO2.jpg)
  
 ## Create a Basic Dashboard
@@ -86,7 +86,7 @@ and the average failed requests (no response) in the period time (ratio).
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
 
-![](answer-img/TODO4.jpg)
+![](answer-img/dashboard1.jpg.jpg)
  
 ## Tracing our Flask App
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here. Also provide a (screenshot) sample Python file containing a trace and span code used to perform Jaeger traces on the backend service.
@@ -108,22 +108,23 @@ Name:
 Jesus Andres Rueda
 
 Date:
-2022-06-27 
+2022-06-29 
 
 Subject:
-High latency on app 
+Error on app 
 
 Affected Area:
 Backend services 
 
 Severity:
-Medium 
+High 
 
 Description:
 
 
-Has been detected a set of requests that exceeds the latency threshold (500us) of the backend application in the new version.
+Has been detected a set of requests that ends with an app error on the backend application, in the new version.
 ![](answer-img/ticket-evidence1.jpg)
+
  
 ## Creating SLIs and SLOs
 *TODO:* We want to create an SLO guaranteeing that our application has a 99.95% uptime per month. Name four SLIs that you would use to measure the success of this SLO.
@@ -144,8 +145,13 @@ Has been detected a set of requests that exceeds the latency threshold (500us) o
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
 ![](answer-img/dashboard-final.jpg)
-Uptime panel shows the availability of the services each 30s
-Errors panels, show the count of 4xx and 5xx errors in backend
-Latency shows the response time of the calls
-Memory shows the used memory of the nodes in cluster
-CPU shows the usage of the CPU nodes over the time
+
+1. Backend uptime %: Shows the % of the backend uptime on the selected range
+2. Frontend uptime %: Shows the % of the frontend uptime on the selected range
+3. Errors vs Succeeded, show the error and succeeded requests on the backend over the time
+4. Uptime: Shows the availability of the services each 30s over the selected range
+5. Memory: Shows the used memory of the nodes in cluster
+6. CPU:  Shows the usage of the CPU nodes over the time
+7. Backend Latency: Shows the response time of the backend requests
+
+
