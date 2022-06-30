@@ -57,6 +57,7 @@ service/jaeger-operator-webhook-service   ClusterIP   10.43.242.200   <none>    
 ## Setup the Jaeger and Prometheus source
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 ![](answer-img/login.jpg)
+![](answer-img/prometheus.jpg)
 ![](answer-img/TODO2.jpg)
  
 ## Create a Basic Dashboard
@@ -137,10 +138,14 @@ Has been detected a set of requests that ends with an app error on the backend a
 ## Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create a list of 2-3 KPIs to accurately measure these metrics as well as a description of why those KPIs were chosen. We will make a dashboard for this, but first write them down here.
 
-1. Total uptime for each service per Month which can be measured using frontend service/backend uptimes based on a 30 seconds probe.
-2. Span duration of api calls in average, monitor the outliers endpoints
-3. Error register and monitoring of services
-4. Node resources monitoring, ensuring app consume efficiently the resources to avoid errors of lack of them.
+KPI 1. Total uptime for each service per Month which can be measured using frontend service/backend uptimes based on a 30 seconds probe. 
+        to monitor uptime and alert when is below 99.95% as required by SLO
+
+KPI 2. Span duration of api calls in average, to monitor the outliers endpoints and evaluate if the uptime is affected by latency on the requests.
+
+KPI 3. Error register and monitoring of services, to monitor if there are errors that make unavailable the application affected the uptime (uptime can be 100% but if the app fails in every requests its not really up)
+
+KPI 4. Node resources monitoring, ensuring app consume efficiently the resources to avoid errors of lack of them, this helps to monitor if the applications have downtimes due the lack of resources in the infrastructure
  
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
